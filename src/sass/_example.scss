@@ -26,3 +26,29 @@
   background-size: cover;
   background-position: center;
 }
+.gallery {
+  display: flex;
+  list-style: none;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.photo-card img {
+  max-width: 350px;
+  height: 300px;
+}
+.photo-card {
+  border: 1px solid;
+  border-radius: 10px;
+}
+
+.info {
+  justify-content: space-around;
+  display: flex;
+}
+.gallery_link {
+  display: block;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
