@@ -18,18 +18,22 @@ function formHandler(e) {
 form.addEventListener('submit', formHandler);
 async function serviceImage(name, nextPage) {
   const URL = `https://pixabay.com/api/?key=36745882-9a469cd98fdea02c7a63719ef&q=${name}&image_type=photo&orientation=horizontal&safesearch=true&page=${nextPage}&per_page=40`;
-  const response = await axios.get(URL).then(res => {
-    if (res.data.totalHits === 0) {
-      Notify.failure(
-        "We're sorry, but you've reached the end of search results."
-      );
-      return;
-    } else {
-      btn.hidden = false;
-      markUp(res.data);
-      let lightbox = new SimpleLightbox('.gallery a');
-    }
-  });
+  try {
+    const response = await axios.get(URL).then(res => {
+      if (res.data.totalHits === 0) {
+        Notify.failure(
+          "We're sorry, but you've reached the end of search results."
+        );
+        return;
+      } else {
+        btn.hidden = false;
+        markUp(res.data);
+        let lightbox = new SimpleLightbox('.gallery a');
+      }
+    });
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 function markUp(data) {
